@@ -1,0 +1,10 @@
+node_modules
+dist
+.git
+.gitignore
+legacy
+docs
+e2e
+coverage
+*.md
+.github
