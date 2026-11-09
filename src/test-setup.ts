@@ -14,3 +14,13 @@ if (typeof localStorage === 'undefined' || typeof localStorage.clear !== 'functi
   };
   Object.defineProperty(globalThis, 'localStorage', { configurable: true, value: memoryStorage });
 }
+
+// O ResponsiveContainer do Recharts mede o DOM, que no jsdom tem tamanho 0: nos testes ele passa um tamanho fixo.
+vi.mock('recharts', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('recharts')>()
+  const { cloneElement } = await import('react')
+  return {
+    ...actual,
+    ResponsiveContainer: ({ children }: { children: React.ReactElement }) => cloneElement(children, { width: 800, height: 400 } as object),
+  }
+})

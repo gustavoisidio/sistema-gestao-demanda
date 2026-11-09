@@ -28,11 +28,9 @@ Cada requisito aponta para o arquivo de mapeamento da tela. Os textos são liter
 
 ### SPEC-PAG-07 — Filtros e janela
 **Regra:** SKU (padrão: o primeiro), granularidade (padrão Semanal) e janela (padrão: série inteira) filtram os KPIs e gráficos; trocar SKU ou granularidade reinicia a janela; o perfil (badge) não muda com a granularidade nem com a janela.
-**Status:** planejado
 
 ### SPEC-PAG-08 — KPIs e abas
 **Regra:** exibe os 5 KPIs com os rótulos do mapeamento e as 4 abas (Série temporal, Sazonalidade, Distribuição, Comparar SKUs); Comparar SKUs começa com os 3 primeiros SKUs e "Normalizar (índice base 100)" ligado.
-**Status:** planejado
 
 ## Previsão — [03](../mapeamento/03-previsao-demanda.md)
 

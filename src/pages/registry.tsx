@@ -5,7 +5,7 @@ import type { RouteId } from '../routes'
 export const PAGES: Record<RouteId, LazyExoticComponent<ComponentType>> = {
   inicio: lazy(() => import('./Inicio')),
   importacao: lazy(() => import('./Importacao')),
-  analise: lazy(() => import('./Placeholder')),
+  analise: lazy(() => import('./AnaliseHistorica')),
   previsao: lazy(() => import('./Placeholder')),
   comparacao: lazy(() => import('./Placeholder')),
   cenarios: lazy(() => import('./Placeholder')),
