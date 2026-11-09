@@ -11,7 +11,7 @@ export function startDebug(): void {
   const render = () => { box.textContent = lines.slice(-14).join('\n') }
   const log = (msg: string) => {
     const t = new Date().toISOString().slice(11, 23)
-    lines.push(`${t} ${msg} [${window.location.hash || '(sem hash)'}]`)
+    lines.push(`${t} ${msg} [${window.location.href.replace(window.location.origin, '')}] hist=${window.history.length}`)
     try { sessionStorage.setItem(KEY, JSON.stringify(lines.slice(-60))) } catch { /* ignora */ }
     render()
   }
@@ -19,6 +19,7 @@ export function startDebug(): void {
   box.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99999;margin:0;padding:6px;font:10px/1.3 monospace;background:#000c;color:#7f7;max-height:30vh;overflow:auto;pointer-events:none'
   document.body.appendChild(box)
   log(`carregou (nav: ${(performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined)?.type ?? '?'}, hist: ${window.history.length})`)
+  document.addEventListener('click', (e) => { const a = (e.target as Element).closest('a'); if (a) log(`clique em ${a.getAttribute('href')}`) }, true)
   for (const ev of ['hashchange', 'popstate', 'pageshow', 'pagehide', 'beforeunload', 'visibilitychange', 'error', 'unhandledrejection', 'vite:preloadError', 'freeze', 'resume']) {
     window.addEventListener(ev, (e) => log(`${ev}${(e as PageTransitionEvent).persisted ? ' (bfcache)' : ''}${(e as ErrorEvent).message ? ': ' + (e as ErrorEvent).message : ''}`))
   }
