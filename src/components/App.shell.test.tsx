@@ -203,3 +203,15 @@ describe('tema e identidade (SPEC-SHL-09)', () => {
     expect(within(screen.getByTestId('sidebar-desktop')).getByAltText('Demanda+ · Planejamento · S&OP')).toHaveAttribute('src', '/logo.svg')
   })
 })
+
+describe('estado de interface não persistente (SPEC-PER-05)', () => {
+  it('só a base é gravada no aparelho; filtros e seleções vivem na sessão', async () => {
+    window.location.hash = '#/previsao'
+    render(<App initial={null} />)
+    await userEvent.click(within(screen.getByTestId('sidebar-desktop')).getByTestId('side-demo'))
+    await userEvent.selectOptions(await screen.findByTestId('sku-select'), 'Smartphone TechX')
+    await userEvent.click(screen.getByRole('radio', { name: '95%' }))
+    expect(localStorage.length).toBe(1)
+    expect(localStorage.key(0)).toBe('demanda_dataset_v1')
+  })
+})

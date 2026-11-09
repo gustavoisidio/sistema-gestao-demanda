@@ -127,9 +127,9 @@ function Result({ bt, h, freq }: { bt: BacktestResult; h: number; freq: Freq }) 
           <ComposedChart data={data} margin={{ top: 8, right: 12, bottom: 0, left: 0 }}>
             <CartesianGrid {...GRID} />
             <XAxis dataKey="date" {...AXIS} tickFormatter={tick} minTickGap={40} />
-            <YAxis {...AXIS} width={56} tickFormatter={(v) => fmtNum(v, 0)} label={{ value: 'Quantidade', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
+            <YAxis {...AXIS} domain={['auto', 'auto']} width={56} tickFormatter={(v) => fmtNum(v, 0)} label={{ value: 'Quantidade', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
             <Tooltip {...TOOLTIP} labelFormatter={(d) => fmtDate(String(d))} formatter={(v) => fmtNum(v, 1)} />
-            <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12 }} />
+            <Legend verticalAlign="top" align="left" height={48} wrapperStyle={{ fontSize: 12 }} />
             <ReferenceArea x1={bt.test[0].date} x2={bt.test[bt.test.length - 1].date} fill="rgba(148,163,184,.10)" stroke="none" label={{ value: 'janela de teste', position: 'insideTopLeft', fill: COLORS.muted, fontSize: 11 }} />
             <Line type="monotone" dataKey="treino" name="Treino" stroke={COLORS.series} strokeWidth={2} dot={false} isAnimationActive={false} />
             <Line type="monotone" dataKey="real" name="Realidade (teste)" stroke={COLORS.slate} strokeWidth={3} dot={{ r: 3.5 }} isAnimationActive={false} />

@@ -111,7 +111,7 @@ function Consensus({ sku, stat, dates, tol, partner, onEdit }: {
               <XAxis dataKey="semana" {...AXIS} tickFormatter={fmtDate} minTickGap={20} />
               <YAxis {...AXIS} width={56} tickFormatter={fmtInt} label={{ value: 'Quantidade', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
               <Tooltip {...TOOLTIP} labelFormatter={(d) => fmtDate(String(d))} formatter={(v) => fmtInt(v)} />
-              <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12 }} />
+              <Legend verticalAlign="top" align="left" height={48} wrapperStyle={{ fontSize: 12 }} />
               <Bar dataKey="sistema" name="Estatística" fill={COLORS.soft} radius={[4, 4, 0, 0]} isAnimationActive={false} />
               <Bar dataKey="parceiro" name="Parceiro" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                 {data.map((d) => <Cell key={d.semana} fill={d.critico ? COLORS.amber : COLORS.accent} />)}

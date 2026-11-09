@@ -17,7 +17,7 @@ export function Heatmap({ rows, cols, values, scale, domain, tooltip, testId, ro
   const [lo, hi] = domain ?? [Math.min(...flat), Math.max(...flat)]
   const t = (v: number) => (hi === lo ? 0.5 : (v - lo) / (hi - lo))
   return (
-    <div className="overflow-x-auto" data-testid={testId}>
+    <div className="overflow-x-auto" data-testid={testId} role="region" aria-label="Mapa de calor (use as setas para rolar)" tabIndex={0}>
       <div className="grid gap-[3px]" style={{ gridTemplateColumns: `minmax(5.5rem,auto) repeat(${cols.length}, minmax(1.6rem, 1fr))`, minWidth: `${6 + cols.length * 1.9}rem` }}>
         <div className="text-[0.7rem] font-semibold text-muted">{rowHeader}</div>
         {cols.map((c) => (
@@ -38,7 +38,7 @@ export function Heatmap({ rows, cols, values, scale, domain, tooltip, testId, ro
         ))}
       </div>
       <div className="mt-2 flex items-center gap-2 text-[0.72rem] text-muted">
-        <span>{Math.round(lo)}</span>
+        <span>{Math.max(0, Math.round(lo))}</span>
         <div className="h-2 w-32 rounded-full" style={{ background: `linear-gradient(90deg, ${[0, 0.25, 0.5, 0.75, 1].map((p) => scale(p)).join(',')})` }} />
         <span>{Math.round(hi)}</span>
       </div>

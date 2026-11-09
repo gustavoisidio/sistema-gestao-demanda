@@ -115,9 +115,9 @@ function ReportBody({ report: r }: { report: Report }) {
           <LineChart data={data} margin={{ top: 8, right: 12, bottom: 0, left: 0 }}>
             <CartesianGrid {...GRID} />
             <XAxis dataKey="date" {...AXIS} tickFormatter={fmtDate} minTickGap={40} />
-            <YAxis {...AXIS} width={56} tickFormatter={fmtInt} />
+            <YAxis {...AXIS} domain={['auto', 'auto']} width={56} tickFormatter={fmtInt} />
             <Tooltip {...TOOLTIP} labelFormatter={(d) => fmtDate(String(d))} formatter={(v) => fmtNum(v, 1)} />
-            <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12 }} />
+            <Legend verticalAlign="top" align="left" height={48} wrapperStyle={{ fontSize: 12 }} />
             <Line type="monotone" dataKey="hist" name="Últimas 52 semanas" stroke={COLORS.series} strokeWidth={2} dot={false} isAnimationActive={false} />
             <Line type="monotone" dataKey="proj" name={`Projeção · ${modelLabel}`} stroke={COLORS.accent} strokeWidth={3} dot={false} isAnimationActive={false} />
           </LineChart>

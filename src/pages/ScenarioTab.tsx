@@ -102,7 +102,7 @@ function ScenarioResult({ sku, h, baseName, baseFc, lastDate, choque, promo, upl
             <YAxis yAxisId="l" {...AXIS} width={56} domain={[0, 'auto']} tickFormatter={fmtInt} label={{ value: 'Quantidade semanal', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
             {hasEffect && <YAxis yAxisId="r" orientation="right" {...AXIS} width={56} tickFormatter={fmtInt} label={{ value: 'Efeito (un.)', angle: 90, position: 'insideRight', fill: COLORS.muted, fontSize: 12 }} />}
             <Tooltip {...TOOLTIP} labelFormatter={(d) => fmtDate(String(d))} formatter={(v) => fmtNum(v, 1)} />
-            <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12 }} />
+            <Legend verticalAlign="top" align="left" height={48} wrapperStyle={{ fontSize: 12 }} />
             {hasEffect && (
               <Bar yAxisId="r" dataKey="efeito" name="Efeito do cenário" fillOpacity={0.35} radius={[4, 4, 0, 0]} isAnimationActive={false}>
                 {data.map((d) => <Cell key={d.date} fill={d.efeito >= 0 ? COLORS.accent : '#F87171'} />)}

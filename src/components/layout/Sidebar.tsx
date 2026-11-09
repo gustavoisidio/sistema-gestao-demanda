@@ -75,7 +75,7 @@ export function Sidebar({ current, onNavigate }: Props) {
         ))}
       </nav>
       <StatusCard onNavigate={onNavigate} />
-      <p className="mt-auto text-[0.7rem] leading-snug text-slate-500">Demanda+ · v2.0 — Previsão estatística, backtesting e colaboração CPFR.</p>
+      <p className="mt-auto text-[0.7rem] leading-snug text-slate-400">Demanda+ · v2.0 — Previsão estatística, backtesting e colaboração CPFR.</p>
     </div>
   )
 }
