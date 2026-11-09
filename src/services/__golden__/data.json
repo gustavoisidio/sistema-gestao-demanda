@@ -1,0 +1,1 @@
+{"alertas":{"colunas_ausentes":[],"valores_nulos":1,"valores_negativos":1,"linhas_duplicadas":1,"tipos_invalidos_data":false},"treated":[{"sku":"A","data":"2025-01-01","q":10.0},{"sku":"A","data":"2025-01-02","q":0.0},{"sku":"A","data":"2025-01-02","q":7.0},{"sku":"B","data":"2025-01-01","q":0.0},{"sku":"B","data":"2025-02-03","q":3.0},{"sku":"C","data":"2025-01-03","q":4.0}]}
