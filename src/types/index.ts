@@ -73,3 +73,31 @@ export interface Indicators {
   periodos_zerados: number
   pct_zerados: number
 }
+
+/** Linha crua lida de CSV/planilha: todas as células como texto, colunas com nome normalizado. */
+export type RawRow = Record<string, string>
+
+export interface RawTable {
+  columns: string[]
+  rows: RawRow[]
+}
+
+export type RequiredColumn = 'sku' | 'data' | 'quantidade_vendida'
+
+export type LoadResult = { ok: true; table: RawTable } | { ok: false; message: string }
+
+export interface ValidationReport {
+  nulos: number
+  negativos: number
+  duplicadas: number
+  datasInvalidas: number
+  todasDatasInvalidas: boolean
+}
+
+export interface DatasetSummary {
+  registros: number
+  skus: number
+  inicio: string
+  fim: string
+  volume: number
+}
