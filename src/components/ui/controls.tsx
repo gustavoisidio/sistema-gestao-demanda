@@ -15,18 +15,21 @@ export function Field({ label, htmlFor, children, className }: { label: string; 
 
 const controlBase = 'min-h-11 w-full rounded-control border border-border bg-white px-3 text-[0.92rem] text-ink'
 
-export function Select({ label, value, options, onChange, testId, className }: {
+export function Select({ label, value, options, onChange, testId, className, placeholder }: {
   label: string
   value: string
   options: readonly string[]
   onChange: (v: string) => void
   testId?: string
   className?: string
+  /** texto da opção vazia (valor ''); sem ele não há opção vazia */
+  placeholder?: string
 }) {
   const id = useId()
   return (
     <Field label={label} htmlFor={id} className={className}>
       <select id={id} className={controlBase} value={value} onChange={(e) => onChange(e.target.value)} data-testid={testId}>
+        {placeholder !== undefined && <option value="">{placeholder}</option>}
         {options.map((o) => (
           <option key={o} value={o}>
             {o}
