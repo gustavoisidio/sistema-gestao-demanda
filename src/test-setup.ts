@@ -24,3 +24,7 @@ vi.mock('recharts', async (importOriginal) => {
     ResponsiveContainer: ({ children }: { children: React.ReactElement }) => cloneElement(children, { width: 800, height: 400 } as object),
   }
 })
+
+// A primeira navegação de cada arquivo carrega o chunk da tela (Recharts incluso): dá mais tempo aos `findBy*`.
+import { configure } from '@testing-library/react'
+configure({ asyncUtilTimeout: 15_000 })
