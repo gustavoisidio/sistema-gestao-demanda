@@ -20,13 +20,16 @@ interface Props<R> {
   rowKey: (row: R, index: number) => string
   searchable?: boolean
   maxHeight?: number
+  /** mostra só as primeiras N linhas, com botão "Mostrar mais" */
+  pageSize?: number
   testId?: string
   emptyText?: string
 }
 
-export function DataTable<R>({ columns, rows, rowKey, searchable = false, maxHeight, testId, emptyText = 'Nenhum registro.' }: Props<R>) {
+export function DataTable<R>({ columns, rows, rowKey, searchable = false, maxHeight, pageSize, testId, emptyText = 'Nenhum registro.' }: Props<R>) {
   const [sort, setSort] = useState<{ key: string; dir: 1 | -1 } | null>(null)
   const [query, setQuery] = useState('')
+  const [visible, setVisible] = useState(pageSize ?? Infinity)
 
   const shown = useMemo(() => {
     let out = rows.map((r, i) => ({ r, i }))
@@ -82,7 +85,7 @@ export function DataTable<R>({ columns, rows, rowKey, searchable = false, maxHei
             {shown.length === 0 && (
               <tr><td colSpan={columns.length} className="px-3 py-6 text-center text-muted">{emptyText}</td></tr>
             )}
-            {shown.map(({ r, i }) => (
+            {shown.slice(0, visible).map(({ r, i }) => (
               <tr key={rowKey(r, i)} className="border-t border-grid">
                 {columns.map((c) => (
                   <td key={c.key} className={cx('px-3 py-2 tabular-nums', c.align === 'right' ? 'text-right' : c.align === 'center' ? 'text-center' : 'text-left')}>
@@ -94,6 +97,11 @@ export function DataTable<R>({ columns, rows, rowKey, searchable = false, maxHei
           </tbody>
         </table>
       </div>
+      {pageSize !== undefined && shown.length > visible && (
+        <button type="button" className="mt-2 min-h-11 w-full rounded-control border border-border bg-white text-[0.88rem] font-semibold text-primary" onClick={() => setVisible((v) => v + pageSize)}>
+          Mostrar mais ({Math.min(pageSize, shown.length - visible)} de {shown.length - visible} restantes)
+        </button>
+      )}
     </div>
   )
 }

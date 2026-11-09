@@ -14,19 +14,15 @@ Cada requisito aponta para o arquivo de mapeamento da tela. Os textos são liter
 
 ### SPEC-PAG-03 — Fluxo de importação
 **Regra:** enviar um CSV válido mostra auditoria, pré-visualização e o botão "Confirmar e salvar base"; confirmar ativa a base, exibe "Base salva! Abrindo a análise histórica…" e navega para `#/analise`. "Usar demonstração" apenas pré-visualiza.
-**Status:** planejado
 
 ### SPEC-PAG-04 — Mapeamento de colunas
 **Regra:** arquivo com colunas fora do padrão mostra um seletor por campo faltante ("Produto / SKU", "Data", "Quantidade vendida") com "Selecione a coluna…"; enquanto incompleto exibe "Complete o mapeamento para continuar." e não mostra a auditoria.
-**Status:** planejado
 
 ### SPEC-PAG-05 — Auditoria
 **Regra:** exibe Registros, SKUs, Período e Índice de qualidade (`{n}/100`, com "n ocorrência(s)" ou "Sem ocorrências") e as 3 verificações com os selos "OK" ou "Tratado: …"; datas inválidas descartadas aparecem em uma linha informativa (SPEC-DAT-08); todas inválidas → "A coluna de datas não pôde ser convertida. Verifique o formato (ex.: AAAA-MM-DD)."
-**Status:** planejado
 
 ### SPEC-PAG-06 — Erros de leitura
 **Regra:** arquivo ilegível ou de formato não suportado mostra "Não foi possível ler o arquivo: {mensagem}" e nada mais.
-**Status:** planejado
 
 ## Análise histórica — [02](../mapeamento/02-analise-historica.md)
 
