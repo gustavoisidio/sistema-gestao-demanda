@@ -33,6 +33,12 @@ export function runAll(y: readonly number[], h: number, m = 12): Partial<Record<
   return out
 }
 
+/** Modelos que `runAll` consegue ajustar para uma série de `n` pontos (sem rodar nada). */
+export function availableModels(n: number, m: number): ModelName[] {
+  if (n < 1) return []
+  return MODEL_NAMES.filter((name) => (name === 'Média Móvel' ? n >= 3 : name === 'Holt' ? n >= 2 : name === 'Holt-Winters' ? m >= 2 && n >= 2 * m : true))
+}
+
 /** Nomes dos modelos presentes, na ordem de `runAll`. */
 export function modelOrder(results: Partial<Record<ModelName, unknown>>): ModelName[] {
   return MODEL_NAMES.filter((n) => n in results)

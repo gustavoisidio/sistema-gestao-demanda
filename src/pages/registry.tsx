@@ -8,7 +8,7 @@ export const PAGES: Record<RouteId, LazyExoticComponent<ComponentType>> = {
   analise: lazy(() => import('./AnaliseHistorica')),
   previsao: lazy(() => import('./Previsao')),
   comparacao: lazy(() => import('./Comparacao')),
-  cenarios: lazy(() => import('./Placeholder')),
+  cenarios: lazy(() => import('./Cenarios')),
   dashboard: lazy(() => import('./Placeholder')),
   relatorios: lazy(() => import('./Placeholder')),
 }

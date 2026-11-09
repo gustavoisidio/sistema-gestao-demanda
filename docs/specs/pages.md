@@ -58,7 +58,6 @@ Cada requisito aponta para o arquivo de mapeamento da tela. Os textos são liter
 
 ### SPEC-PAG-15 — Simulação
 **Regra:** controles e padrões do mapeamento (12 semanas, choque 0, promoções nas semanas 4 e 8, uplift 30, modelo base Média Móvel); reduzir as semanas descarta promoções além do horizonte; os 4 KPIs e o gráfico refletem `buildScenario`; "Exportar cenário (Excel)" baixa `cenario_{sku}.xlsx`.
-**Status:** planejado
 
 ### SPEC-PAG-16 — CPFR
 **Regra:** tabela editável (só "Plano do parceiro"), KPIs de consenso, gráfico agrupado, alertas por semana crítica (callout verde "Plano em consenso…" ou vermelho "{n} semana(s) com desvio crítico…") e exportação `cpfr_{sku}.xlsx`; histórico insuficiente mostra "Histórico insuficiente para o plano de consenso."

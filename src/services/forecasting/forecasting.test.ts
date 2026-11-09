@@ -4,7 +4,7 @@ import { buildDemoRecords } from '../data/demo'
 import { listSkus } from '../data/summary'
 import { seriesFor, valuesOf } from '../series/aggregate'
 import { SEASON } from '../series/params'
-import { confidenceBand, croston, holt, holtWinters, linearRegression, naive, runAll, runModels, simpleMovingAverage, ses } from './index'
+import { availableModels, confidenceBand, croston, holt, holtWinters, linearRegression, naive, runAll, runModels, simpleMovingAverage, ses } from './index'
 import type { Freq, ModelName } from '../../types'
 import golden from '../__golden__/models.json'
 
@@ -133,6 +133,16 @@ describe('runAll (SPEC-FCS-08)', () => {
   it('omite indisponíveis: n < 3 sem Média Móvel; n < 2m sem Holt-Winters', () => {
     expect(Object.keys(runAll([1, 2], 2, 12))).toEqual(['Naive', 'SES', 'Holt', 'Regressão', 'Croston'])
     expect(Object.keys(runAll([1, 2, 3, 4, 5], 2, 12))).not.toContain('Holt-Winters')
+  })
+})
+
+describe('availableModels (SPEC-FCS-08)', () => {
+  it('coincide com os modelos que runAll de fato ajusta', () => {
+    for (const n of [1, 2, 3, 5, 10, 23, 24, 30]) {
+      const y = Array.from({ length: n }, (_, t) => 10 + (t % 5))
+      expect(availableModels(n, 12)).toEqual(Object.keys(runAll(y, 2, 12)))
+    }
+    expect(availableModels(0, 12)).toEqual([])
   })
 })
 
