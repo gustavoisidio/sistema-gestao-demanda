@@ -23,7 +23,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 
 ---
 
-## M0 — Documentação e especificação
+## ✅ M0 — Documentação e especificação
 | Sub | Entrega | CHK |
 |---|---|---|
 | 0.1 | `AGENTS.md` | CHK-0.1: contém processo, stack, camadas, checagens e convenções |
@@ -32,7 +32,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 | 0.4 | `docs/plans`, `docs/adr`, `docs/BACKLOG.md` | CHK-0.4: links relativos resolvem |
 | **CHK-MACRO-0** | Revisão cruzada mapeamento ↔ código original (cada função de `services.py`/`ui.py`/`views/*` tem destino) | |
 
-## M1 — Fundação do projeto
+## ✅ M1 — Fundação do projeto
 | Sub | Entrega | CHK |
 |---|---|---|
 | 1.1 | Mover o código Python para `legacy/streamlit/` | CHK-1.1: `git mv` preserva histórico; nada do Python fora de `legacy/` |
@@ -43,7 +43,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 | 1.6 | `Dockerfile`, `nginx.conf`, `.dockerignore`, `.gitignore`, template de PR, README novo | CHK-1.6: `docker build` não é exigido; `npm run build` e `npm run preview` servem a página |
 | **CHK-MACRO-1** | `npm run verify` + `npm run build` | |
 
-## M2 — Domínio base (`types`, `lib`)
+## ✅ M2 — Domínio base (`types`, `lib`)
 | Sub | Entrega (specs) | CHK |
 |---|---|---|
 | 2.1 | `types/index.ts` | CHK-2.1: `tsc -b` |
@@ -53,7 +53,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 | 2.5 | `lib/optimize.ts` (Nelder–Mead com limites) | CHK-2.5: minimiza Rosenbrock/quadráticas com limites; determinístico |
 | **CHK-MACRO-2** | `verify` + cobertura de `lib/` ≥ 90% | |
 
-## M3 — Dados e séries
+## ✅ M3 — Dados e séries
 | Sub | Entrega (specs) | CHK |
 |---|---|---|
 | 3.1 | Gerador de referência `scripts/golden/` (Python do original) e `__golden__/*.json` | CHK-3.1: arquivos regeneráveis e versionados; script documentado |
@@ -64,7 +64,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 | 3.6 | `services/series` (SER-01…07) | CHK-3.6: séries da demo = golden (W: 208 pontos; ME: 46 pontos; D: 1.456) |
 | **CHK-MACRO-3** | `verify` + paridade de séries nas 3 granularidades para os 5 SKUs | |
 
-## M4 — Análise exploratória
+## ✅ M4 — Análise exploratória
 | Sub | Entrega | CHK |
 |---|---|---|
 | 4.1 | indicadores + classificação (EDA-01…04) | CHK-4.1: perfis dos 5 SKUs da demo = golden |
@@ -73,7 +73,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 | 4.4 | sazonalidade, histograma, boxplot, comparação (EDA-09…13) | CHK-4.4 |
 | **CHK-MACRO-4** | `verify` + paridade de indicadores | |
 
-## M5 — Motor de previsão
+## ✅ M5 — Motor de previsão
 | Sub | Entrega | CHK |
 |---|---|---|
 | 5.1 | Naive, Regressão (FCS-01, 06) | CHK-5.1: golden 1e-9 |
@@ -84,7 +84,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 | 5.6 | `runAll`, `runModels`, intervalos, entradas inválidas (FCS-08, 09, 11, 12, 13) | CHK-5.6 |
 | **CHK-MACRO-5** | `verify` + relatório de paridade (tabela modelo × SKU × granularidade) anexado ao commit | |
 
-## M6 — Avaliação, cenários, relatórios e exportação
+## ✅ M6 — Avaliação, cenários, relatórios e exportação
 | Sub | Entrega | CHK |
 |---|---|---|
 | 6.1 | métricas e backtest (EVL-01…03) | CHK-6.1: ranking do backtest da demo = golden (ordem dos modelos por WAPE; WAPE do top dentro de 2 p.p.) |
@@ -96,7 +96,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 | 6.7 | exportações (EXP-01…05) | CHK-6.7: Excel relido pelo parser; CSV round-trip |
 | **CHK-MACRO-6** | `verify` + o conjunto de `services/` não importa React/DOM (lint) | |
 
-## M7 — Infra, estado e biblioteca de UI
+## ✅ M7 — Infra, estado e biblioteca de UI
 | Sub | Entrega | CHK |
 |---|---|---|
 | 7.1 | `infra/storage.service`, `storageKeys` (PER-01…05) | CHK-7.1: cota simulada; versão inválida |
@@ -109,7 +109,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 | 7.8 | tema/identidade (SHL-08, 09): logo, ícones, manifest | CHK-7.8 |
 | **CHK-MACRO-7** | `verify`; app sobe e navega entre rotas vazias | |
 
-## M8 — Telas (uma sub-etapa por tela; cada uma: página + testes de página + conferência de textos)
+## ✅ M8 — Telas (uma sub-etapa por tela; cada uma: página + testes de página + conferência de textos)
 | Sub | Tela (specs) | CHK |
 |---|---|---|
 | 8.1 | Visão geral (PAG-01, 02) | CHK-8.1: textos do mapeamento 00 presentes (teste por `getByText`) |
@@ -123,7 +123,7 @@ Efeitos colaterais: o README do repositório deixa de ensinar `streamlit run` (p
 | 8.9 | Relatórios (PAG-19, 20) | CHK-8.9 |
 | **CHK-MACRO-8** | `verify` + varredura de textos (script compara strings literais de `docs/mapeamento` com a UI) + `npm run build` | |
 
-## M9 — Acabamento e ponta a ponta
+## ✅ M9 — Acabamento e ponta a ponta
 | Sub | Entrega | CHK |
 |---|---|---|
 | 9.1 | Responsivo: 390, 768, 1024, 1280 px em todas as telas (gráficos, tabelas, filtros) | CHK-9.1: capturas Playwright sem rolagem horizontal da página |
