@@ -89,3 +89,79 @@ describe('simulação de cenários (SPEC-PAG-15)', () => {
     expect(read.ok && read.table.columns).toEqual(['semana', 'data', 'base', 'cenário', 'promoção', 'variação_(%)'])
   })
 })
+
+describe('CPFR (SPEC-PAG-16)', () => {
+  const goCpfr = async () => {
+    render(<App initial={demo} />)
+    await screen.findByRole('heading', { level: 1, name: 'Cenários e CPFR' })
+    await userEvent.click(screen.getByRole('tab', { name: 'CPFR · gestão colaborativa' }))
+    return screen.findByTestId('partner-editor')
+  }
+
+  it('controles e padrões; tabela editável só na coluna do parceiro, começando igual ao sistema', async () => {
+    await goCpfr()
+    expect(screen.getByTestId('cpfr-h')).toHaveValue('8')
+    expect(screen.getByTestId('cpfr-tol')).toHaveValue('20')
+    expect(screen.getByText(/Edite a coluna/)).toBeInTheDocument()
+    expect(screen.getByText(/A análise de consenso é atualizada instantaneamente\./)).toBeInTheDocument()
+    expect(within(screen.getByTestId('partner-editor')).getAllByRole('spinbutton')).toHaveLength(8)
+    const k = within(screen.getByTestId('cpfr-kpis'))
+    expect(k.getByText('8/8')).toBeInTheDocument()
+    expect(k.getByText('100% de aderência')).toBeInTheDocument()
+    expect(screen.getByText('Plano em consenso.')).toBeInTheDocument()
+    expect(screen.getByText(/Todas as semanas estão dentro da margem de ±20%\./)).toBeInTheDocument()
+  })
+
+  it('uma semana fora da tolerância gera alerta crítico, status e recomendação do original', async () => {
+    await goCpfr()
+    const input = screen.getByTestId('partner-0') as HTMLInputElement
+    const sistema = Number(input.value)
+    fireEvent.change(input, { target: { value: String(Math.round(sistema * 1.5)) } })
+    expect(screen.getByText('1 semana(s) com desvio crítico.')).toBeInTheDocument()
+    expect(screen.getByText(/Recomenda-se reunião de alinhamento tático com o parceiro\./)).toBeInTheDocument()
+    expect(within(screen.getByTestId('cpfr-alerts')).getByText(/\+50,0% · ruptura/)).toBeInTheDocument()
+    const table = within(screen.getByTestId('cpfr-table'))
+    expect(table.getByText('🔺 Risco de ruptura')).toBeInTheDocument()
+    expect(table.getAllByText('✅ Alinhado')).toHaveLength(7)
+    expect(within(screen.getByTestId('cpfr-kpis')).getByText('7/8')).toBeInTheDocument()
+
+    fireEvent.change(input, { target: { value: String(Math.round(sistema * 0.5)) } })
+    expect(within(screen.getByTestId('cpfr-alerts')).getByText(/-50,0% · excesso/)).toBeInTheDocument()
+    expect(within(screen.getByTestId('cpfr-table')).getByText('🔻 Risco de excesso')).toBeInTheDocument()
+  })
+
+  it('trocar a tolerância preserva as edições; trocar o horizonte as reinicia', async () => {
+    await goCpfr()
+    const input = screen.getByTestId('partner-0') as HTMLInputElement
+    const sistema = Number(input.value)
+    fireEvent.change(input, { target: { value: String(Math.round(sistema * 1.3)) } })
+    expect(screen.getByText('1 semana(s) com desvio crítico.')).toBeInTheDocument()
+    fireEvent.change(screen.getByTestId('cpfr-tol'), { target: { value: '50' } })
+    expect((screen.getByTestId('partner-0') as HTMLInputElement).value).toBe(String(Math.round(sistema * 1.3)))
+    expect(screen.getByText('Plano em consenso.')).toBeInTheDocument()
+    fireEvent.change(screen.getByTestId('cpfr-h'), { target: { value: '9' } })
+    expect((screen.getByTestId('partner-0') as HTMLInputElement).value).toBe(String(sistema))
+  })
+
+  it('valores inválidos viram inteiros ≥ 0', async () => {
+    await goCpfr()
+    const input = screen.getByTestId('partner-1') as HTMLInputElement
+    fireEvent.change(input, { target: { value: '-40' } })
+    expect(input.value).toBe('0')
+  })
+
+  it('exporta cpfr_{sku}.xlsx', async () => {
+    await goCpfr()
+    await userEvent.click(screen.getByTestId('export-cpfr'))
+    await waitFor(() => expect(downloads).toHaveLength(1))
+    expect(downloads[0].name).toBe(`cpfr_${SKU}.xlsx`)
+  })
+
+  it('histórico insuficiente mostra a mensagem em vez de quebrar', async () => {
+    const few = Array.from({ length: 21 }, (_, i) => ({ sku: 'A', data: new Date(Date.UTC(2023, 0, 2 + i)).toISOString().slice(0, 10), quantidade_vendida: 4 }))
+    render(<App initial={{ records: few, origem: 'x' }} />)
+    await screen.findByRole('heading', { level: 1, name: 'Cenários e CPFR' })
+    await userEvent.click(screen.getByRole('tab', { name: 'CPFR · gestão colaborativa' }))
+    expect(await screen.findByTestId('cpfr-short')).toHaveTextContent('Histórico insuficiente para o plano de consenso.')
+  })
+})

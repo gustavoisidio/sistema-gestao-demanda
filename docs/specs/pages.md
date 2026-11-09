@@ -61,7 +61,6 @@ Cada requisito aponta para o arquivo de mapeamento da tela. Os textos são liter
 
 ### SPEC-PAG-16 — CPFR
 **Regra:** tabela editável (só "Plano do parceiro"), KPIs de consenso, gráfico agrupado, alertas por semana crítica (callout verde "Plano em consenso…" ou vermelho "{n} semana(s) com desvio crítico…") e exportação `cpfr_{sku}.xlsx`; histórico insuficiente mostra "Histórico insuficiente para o plano de consenso."
-**Status:** planejado
 
 ## Dashboard — [05](../mapeamento/05-dashboard-gerencial.md)
 
