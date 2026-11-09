@@ -74,8 +74,6 @@ Cada requisito aponta para o arquivo de mapeamento da tela. Os textos são liter
 
 ### SPEC-PAG-19 — Laudo por produto
 **Regra:** antes de "Gerar laudo" mostra "Selecione o produto e clique em Gerar laudo."; depois mostra cartão do laudo, 5 KPIs, gráfico e 3 downloads; trocar o SKU volta ao estado inicial.
-**Status:** planejado
 
 ### SPEC-PAG-20 — Visão do portfólio
 **Regra:** tabela com SKU, Perfil, Modelo recomendado, Acurácia, Viés, Volume 52 sem. e tendência; barra de progresso durante o cálculo; "Exportar visão do portfólio (Excel)".
-**Status:** planejado

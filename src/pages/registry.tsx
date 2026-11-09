@@ -10,5 +10,5 @@ export const PAGES: Record<RouteId, LazyExoticComponent<ComponentType>> = {
   comparacao: lazy(() => import('./Comparacao')),
   cenarios: lazy(() => import('./Cenarios')),
   dashboard: lazy(() => import('./Dashboard')),
-  relatorios: lazy(() => import('./Placeholder')),
+  relatorios: lazy(() => import('./Relatorios')),
 }
