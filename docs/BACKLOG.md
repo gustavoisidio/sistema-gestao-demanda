@@ -29,4 +29,4 @@ Itens fora do escopo da migração ou adiados. **Esforço:** P (horas) · M (1�
 Nada aqui entra no desenvolvimento sem decisão do usuário.
 
 ## Concluído nesta rodada
-_(preenchido ao fim de cada macro-etapa)_
+- **BKL-01** — Migração Streamlit → React: M0–M9 entregues (documentação, scaffold, domínio, 8 telas, responsivo, acessibilidade e E2E). Falta aceite do dono do produto e o deploy (BKL-03).
