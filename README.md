@@ -49,7 +49,7 @@ Desenvolvimento orientado a especificação — leia o [AGENTS.md](AGENTS.md) an
 
 ## Deploy
 
-`Dockerfile` (build com Node + nginx) pronto para o Railway. O deploy só é feito após a validação em aparelho externo.
+`Dockerfile` (build com Node + nginx, porta via `PORT`) pronto para o Railway: crie o serviço a partir do repositório e ele detecta o Dockerfile sozinho.
 
 ## Tecnologias
 

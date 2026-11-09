@@ -6,7 +6,7 @@ Branch: `feat/migracao-react`. **Um commit por sub-etapa** (Conventional Commits
 ## Análise de impacto
 | Camada | Mudança |
 |---|---|
-| Repositório | Código Python movido para `legacy/streamlit/` (referência); app novo na raiz (`src/`, `public/`, `scripts/`, `Dockerfile`, `nginx.conf`) |
+| Repositório | Código Python movido para `legacy/streamlit/` (referência); app novo na raiz (`src/`, `public/`, `scripts/`, `Dockerfile`, `nginx.conf.template`) |
 | types / lib | Novos: tipos de domínio, datas sem fuso, formatação pt-BR, estatística básica, otimizador Nelder–Mead |
 | services | Reescrita em TypeScript de `data_processor`, `eda`, `forecasting`, `evaluator`, `scenario_builder` e `services` (+ laudo, dashboard, exportação) |
 | infra / store / hooks | Novos: `storage.service`, `DatasetProvider`, `useRoute`, hooks de séries/modelos memoizados |
