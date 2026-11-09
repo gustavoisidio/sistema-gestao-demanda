@@ -13,7 +13,7 @@ Itens fora do escopo da migração ou adiados. **Esforço:** P (horas) · M (1�
 
 | ID | Item | Gatilho | Esforço | Risco |
 |---|---|---|---|---|
-| BKL-03 | **Deploy no Railway** (Dockerfile + nginx; domínio) | após o teste em aparelho externo e a aprovação | P | B |
+| BKL-03 | **Deploy no Railway** (Dockerfile + nginx com `PORT`; domínio) | Dockerfile pronto e enviado; falta criar o serviço no Railway | P | B |
 | BKL-04 | **Zoom e exportar PNG nos gráficos** (a barra do Plotly não existe no Recharts) | pedido de usuários | M | B |
 | BKL-05 | **Web Worker para backtest/portfólio** | travamento medido > 300 ms na etapa 9.2 | M | M |
 | BKL-06 | **Tema escuro** | pedido de produto (o original é só claro; o app de gastos tem escuro) | M | B |
