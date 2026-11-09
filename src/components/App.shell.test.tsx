@@ -215,3 +215,15 @@ describe('estado de interface não persistente (SPEC-PER-05)', () => {
     expect(localStorage.key(0)).toBe('demanda_dataset_v1')
   })
 })
+
+describe('voltar do navegador (SPEC-SHL-01)', () => {
+  it('acompanha a URL também quando só popstate ou pageshow são disparados (Safari do iOS)', async () => {
+    render(<App initial={demo} />)
+    const current = () => within(screen.getByTestId('sidebar-desktop')).getByRole('link', { current: 'page' })
+    expect(current()).toHaveTextContent('Visão geral')
+    act(() => { window.history.replaceState(null, '', '#/analise'); window.dispatchEvent(new PopStateEvent('popstate')) })
+    await waitFor(() => expect(current()).toHaveTextContent('Análise histórica'))
+    act(() => { window.history.replaceState(null, '', '#/'); window.dispatchEvent(new Event('pageshow')) })
+    await waitFor(() => expect(current()).toHaveTextContent('Visão geral'))
+  })
+})
