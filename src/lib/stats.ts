@@ -103,3 +103,9 @@ export function roundHalfEven(x: number): number {
   const r = Math.round(x)
   return Math.abs(x % 1) === 0.5 && r % 2 !== 0 ? r - 1 : r
 }
+
+/** Arredonda para `dec` casas (meio para cima), para textos de planilha. */
+export function round(x: number, dec: number): number {
+  const f = 10 ** dec
+  return Math.round(x * f) / f
+}
