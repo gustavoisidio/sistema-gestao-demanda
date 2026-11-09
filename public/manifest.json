@@ -1,0 +1,10 @@
+{
+  "name": "Demanda+ · Gestão de Demanda",
+  "short_name": "Demanda+",
+  "description": "Previsão e gestão de demanda (S&OP / CPFR)",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F7FB",
+  "theme_color": "#0F172A",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
