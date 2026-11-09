@@ -142,9 +142,9 @@ function Result({ sku, freq, freqLabel, h, conf, computed, series, selected, onS
           <ComposedChart data={data} margin={{ top: 8, right: 12, bottom: 0, left: 0 }}>
             <CartesianGrid {...GRID} />
             <XAxis dataKey="date" {...AXIS} tickFormatter={tick} minTickGap={40} />
-            <YAxis {...AXIS} width={56} tickFormatter={fmtInt} label={{ value: 'Quantidade', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
+            <YAxis {...AXIS} domain={['auto', 'auto']} width={56} tickFormatter={fmtInt} label={{ value: 'Quantidade', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
             <Tooltip {...TOOLTIP} labelFormatter={(d) => fmtDate(String(d))} formatter={(v) => (Array.isArray(v) ? `${fmtInt(v[0])} – ${fmtInt(v[1])}` : fmtNum(v, 1))} />
-            <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12, cursor: 'pointer' }}
+            <Legend verticalAlign="top" align="left" height={48} wrapperStyle={{ fontSize: 12, cursor: 'pointer' }}
               onClick={(e) => { if (e.dataKey === 'fit') setShowFit((s) => !s) }} />
             <Area type="monotone" dataKey="band" name={`Intervalo ${conf}`} stroke="none" fill={COLORS.accent} fillOpacity={0.14} isAnimationActive={false} />
             <Line type="monotone" dataKey="hist" name="Histórico" stroke={COLORS.series} strokeWidth={2} dot={false} isAnimationActive={false} />
@@ -155,7 +155,7 @@ function Result({ sku, freq, freqLabel, h, conf, computed, series, selected, onS
         </ChartFrame>
       </Card>
 
-      <div className="grid gap-3 lg:grid-cols-[3fr_1fr]">
+      <div className="grid items-start gap-3 lg:grid-cols-[3fr_1fr]">
         <Expander title="Tabela da previsão" icon="table" testId="forecast-table">
           <DataTable columns={columns} rows={tableRows} rowKey={(x) => x.periodo} />
         </Expander>
@@ -171,9 +171,9 @@ function Result({ sku, freq, freqLabel, h, conf, computed, series, selected, onS
           <LineChart data={allData} margin={{ top: 8, right: 12, bottom: 0, left: 0 }}>
             <CartesianGrid {...GRID} />
             <XAxis dataKey="date" {...AXIS} tickFormatter={tick} minTickGap={40} />
-            <YAxis {...AXIS} width={56} tickFormatter={fmtInt} />
+            <YAxis {...AXIS} domain={['auto', 'auto']} width={56} tickFormatter={fmtInt} />
             <Tooltip {...TOOLTIP} labelFormatter={(d) => fmtDate(String(d))} formatter={(v) => fmtNum(v, 1)} />
-            <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12 }} />
+            <Legend verticalAlign="top" align="left" height={48} wrapperStyle={{ fontSize: 12 }} />
             <Line type="monotone" dataKey="hist" name="Histórico" stroke={COLORS.series} strokeWidth={2} dot={false} isAnimationActive={false} />
             {names.map((n, i) => <Line key={n} type="monotone" dataKey={n} name={n} stroke={colorOf(i)} strokeWidth={n === modelo ? 3 : 1.6} dot={false} isAnimationActive={false} />)}
           </LineChart>

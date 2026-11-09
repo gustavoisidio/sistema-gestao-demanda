@@ -59,7 +59,7 @@ export function DataTable<R>({ columns, rows, rowKey, searchable = false, maxHei
           <input type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar…" aria-label="Buscar na tabela" className="w-full bg-transparent text-[0.9rem] outline-none" />
         </label>
       )}
-      <div className="overflow-auto rounded-xl border border-border bg-white" style={maxHeight ? { maxHeight } : undefined}>
+      <div className="overflow-auto rounded-xl border border-border bg-white" style={maxHeight ? { maxHeight } : undefined} role="region" aria-label="Tabela (use as setas para rolar)" tabIndex={0}>
         <table className="w-full border-collapse text-[0.88rem]">
           <thead className="sticky top-0 z-10 bg-canvas-2">
             <tr>

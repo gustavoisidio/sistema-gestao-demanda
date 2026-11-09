@@ -133,7 +133,7 @@ function Body({ base, kpis, skus, mode, setMode }: { base: ReturnType<typeof fil
               <XAxis dataKey="date" {...AXIS} tickFormatter={monthShort} minTickGap={30} />
               <YAxis {...AXIS} width={60} tickFormatter={fmtInt} label={{ value: 'Volume mensal', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
               <Tooltip {...TOOLTIP} labelFormatter={(d) => monthShort(String(d))} formatter={(v) => fmtInt(v)} />
-              <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12 }} />
+              <Legend verticalAlign="bottom" align="left" wrapperStyle={{ fontSize: 12, paddingTop: 8 }} />
               {monthly.skus.map((s) => <Line key={s} type="monotone" dataKey={s} stroke={colorFor(s)} strokeWidth={2} dot={{ r: 2.5 }} isAnimationActive={false} />)}
             </LineChart>
           ) : (
@@ -143,7 +143,7 @@ function Body({ base, kpis, skus, mode, setMode }: { base: ReturnType<typeof fil
               <YAxis {...AXIS} width={60} tickFormatter={(v) => (mode === 'Participação %' ? `${Math.round(v * 100)}%` : fmtInt(v))}
                 label={{ value: mode === 'Participação %' ? '% do volume' : 'Volume mensal', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
               <Tooltip {...TOOLTIP} labelFormatter={(d) => monthShort(String(d))} formatter={(v) => (mode === 'Participação %' ? fmtPct(v, 1) : fmtInt(v))} />
-              <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12 }} />
+              <Legend verticalAlign="bottom" align="left" wrapperStyle={{ fontSize: 12, paddingTop: 8 }} />
               {monthly.skus.map((s) => <Area key={s} type="monotone" dataKey={s} stackId="1" stroke={colorFor(s)} fill={colorFor(s)} fillOpacity={0.85} strokeWidth={1} isAnimationActive={false} />)}
             </AreaChart>
           )}

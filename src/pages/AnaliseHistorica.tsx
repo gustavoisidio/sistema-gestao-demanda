@@ -95,9 +95,9 @@ export default function AnaliseHistorica() {
                 <LineChart data={lineData} margin={{ top: 8, right: 12, bottom: 0, left: 0 }}>
                   <CartesianGrid {...GRID} />
                   <XAxis dataKey="date" {...AXIS} tickFormatter={tickDate} minTickGap={40} />
-                  <YAxis {...AXIS} width={56} tickFormatter={fmtInt} label={{ value: 'Quantidade', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
+                  <YAxis {...AXIS} domain={['auto', 'auto']} width={56} tickFormatter={fmtInt} label={{ value: 'Quantidade', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
                   <Tooltip {...TOOLTIP} labelFormatter={(d) => fmtDate(String(d))} formatter={(v) => fmtNum(v, 1)} />
-                  <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12 }} />
+                  <Legend verticalAlign="top" align="left" height={48} wrapperStyle={{ fontSize: 12 }} />
                   <Line type="monotone" dataKey="real" name="Demanda real" stroke={COLORS.primary} strokeWidth={1.6} dot={false} isAnimationActive={false} />
                   <Line type="monotone" dataKey="mm" name={`Média móvel (${ROLLING_WINDOW[freq]})`} stroke={COLORS.accent} strokeWidth={2.6} dot={false} isAnimationActive={false} />
                   <Line type="linear" dataKey="trend" name="Tendência linear" stroke={COLORS.amber} strokeWidth={2} strokeDasharray="6 4" dot={false} isAnimationActive={false} />
@@ -202,9 +202,9 @@ function Compare({ records, skus, freq, inicio, fim, normalize, all }: {
         <LineChart data={data} margin={{ top: 8, right: 12, bottom: 0, left: 0 }}>
           <CartesianGrid {...GRID} />
           <XAxis dataKey="date" {...AXIS} tickFormatter={tickDate} minTickGap={40} />
-          <YAxis {...AXIS} width={56} tickFormatter={fmtInt} label={{ value: normalize ? 'Índice (100 = média)' : 'Quantidade', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
+          <YAxis {...AXIS} domain={['auto', 'auto']} width={56} tickFormatter={fmtInt} label={{ value: normalize ? 'Índice (100 = média)' : 'Quantidade', angle: -90, position: 'insideLeft', fill: COLORS.muted, fontSize: 12 }} />
           <Tooltip {...TOOLTIP} labelFormatter={(d) => fmtDate(String(d))} formatter={(v) => fmtNum(v, 1)} />
-          <Legend verticalAlign="top" align="left" wrapperStyle={{ fontSize: 12 }} />
+          <Legend verticalAlign="bottom" align="left" wrapperStyle={{ fontSize: 12, paddingTop: 8 }} />
           {skus.map((s, i) => <Line key={s} type="monotone" dataKey={s} name={s} stroke={colorOf(all.indexOf(s) >= 0 ? i : i)} strokeWidth={2} dot={false} isAnimationActive={false} />)}
         </LineChart>
       </ChartFrame>

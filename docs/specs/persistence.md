@@ -16,4 +16,3 @@ Implementação: `src/infra/storage.service.ts`, `src/infra/storageKeys.ts`, `sr
 
 ### SPEC-PER-05 — Estado de interface não persistente
 **Regra:** filtros, seleção de modelo, edições do CPFR e laudo gerado vivem na sessão (como no original); só a base é persistida.
-**Status:** planejado
