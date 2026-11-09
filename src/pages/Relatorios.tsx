@@ -141,7 +141,7 @@ function usePortfolio(records: SaleRecord[]) {
   const skus = useMemo(() => listSkus(records), [records])
   const cached = memoByRecords<{ rows: PortfolioReportRow[] | null }>(records, 'portfolio', () => ({ rows: null }))
   const [rows, setRows] = useState<PortfolioReportRow[] | null>(cached.rows)
-  const [progress, setProgress] = useState({ i: 0, sku: skus[0] ?? '' })
+  const [progress, setProgress] = useState({ i: 0, sku: '' })
 
   useEffect(() => {
     if (cached.rows) return
@@ -176,7 +176,7 @@ function PortfolioTab() {
   if (!rows) {
     return (
       <Card testId="portfolio-progress">
-        <ProgressBar value={progress.i} max={total} label={`Avaliando ${progress.sku}…`} />
+        <ProgressBar value={progress.i} max={total} label={progress.sku ? `Avaliando ${progress.sku}…` : 'Avaliando portfólio…'} />
       </Card>
     )
   }
