@@ -18,6 +18,8 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './src/test-setup.ts',
+    // os modelos de Holt-Winters são pesados e os arquivos de teste rodam em paralelo
+    testTimeout: 30_000,
     // ignora artefatos AppleDouble (._*) criados em volumes exFAT/SMB e os testes de navegador
     exclude: ['**/node_modules/**', '**/dist/**', '**/._*', 'e2e/**', 'legacy/**'],
   },

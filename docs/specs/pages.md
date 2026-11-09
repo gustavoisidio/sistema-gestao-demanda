@@ -36,19 +36,15 @@ Cada requisito aponta para o arquivo de mapeamento da tela. Os textos são liter
 
 ### SPEC-PAG-09 — Controles da previsão
 **Regra:** granularidade padrão Mensal; horizonte entre 1 e `MAX_H` com padrão `DEFAULT_H` e valor lembrado por granularidade; confiança 80% ou 95%; série com menos de 6 períodos mostra "Histórico insuficiente para previsões estatísticas (mínimo de 6 períodos nessa granularidade)."
-**Status:** planejado
 
 ### SPEC-PAG-10 — Modelo recomendado
 **Regra:** as pílulas listam os modelos disponíveis; o recomendado pelo backtest aparece como "★ {modelo}", vem selecionado e mostra "Recomendado pelo backtesting."; trocar o modelo atualiza KPIs, gráfico e tabela.
-**Status:** planejado
 
 ### SPEC-PAG-11 — KPIs da previsão
 **Regra:** "Demanda prevista", "Média por {unidade}", "Faixa {conf} (total)" e "Acurácia no backtest" seguem as fórmulas do mapeamento (incluindo `—` quando indefinidos).
-**Status:** planejado
 
 ### SPEC-PAG-12 — Exportação da previsão
 **Regra:** "Exportar Excel" e "Exportar CSV" baixam arquivos com as colunas Período, Previsão, Limite inferior ({conf}) e Limite superior ({conf}) e os nomes de SPEC-EXP-03.
-**Status:** planejado
 
 ## Comparação — [04](../mapeamento/04-comparacao-modelos.md)
 

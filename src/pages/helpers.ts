@@ -29,3 +29,13 @@ export function useDeferredCompute<T>(key: string, compute: () => T): { value: T
   const ready = state !== null && state.key === key
   return { value: ready ? state.value : null, pending: !ready }
 }
+
+const memoStore = new WeakMap<object, Map<string, unknown>>()
+
+/** Memoiza um cálculo pesado por (base, chave): trocar de tela e voltar não recalcula. */
+export function memoByRecords<T>(records: object, key: string, compute: () => T): T {
+  let m = memoStore.get(records)
+  if (!m) memoStore.set(records, (m = new Map()))
+  if (!m.has(key)) m.set(key, compute())
+  return m.get(key) as T
+}
