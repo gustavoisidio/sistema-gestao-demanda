@@ -50,11 +50,9 @@ Cada requisito aponta para o arquivo de mapeamento da tela. Os textos são liter
 
 ### SPEC-PAG-13 — Limites do teste
 **Regra:** o slider vai de 1 a `max(1, min(MAX_H, n − 4))` com padrão `min(DEFAULT_H, max)`; `n ≤ h + 3` mostra "Histórico insuficiente: a base tem {n} períodos e o teste usa {h}. Reduza os períodos de teste."; backtest vazio mostra "Nenhum modelo conseguiu calcular o horizonte selecionado."
-**Status:** planejado
 
 ### SPEC-PAG-14 — Vencedor, ranking e tabela
 **Regra:** mostra o cartão do vencedor ("🏆 {modelo}", WAPE, ganho sobre o Naive), MAE, Viés e o callout de tracking signal (âmbar se `|TS| > 4`, verde caso contrário), o ranking por WAPE, o gráfico do teste cego com as 3 melhores e a tabela completa com as 9 colunas.
-**Status:** planejado
 
 ## Cenários e CPFR — [06](../mapeamento/06-cenarios-cpfr.md)
 
