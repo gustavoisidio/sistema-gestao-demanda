@@ -97,3 +97,9 @@ export function solveLinear(a: number[][], b: number[]): number[] | null {
   }
   return x
 }
+
+/** Arredondamento para o inteiro mais próximo com empate para o par (como `np.round`). */
+export function roundHalfEven(x: number): number {
+  const r = Math.round(x)
+  return Math.abs(x % 1) === 0.5 && r % 2 !== 0 ? r - 1 : r
+}
