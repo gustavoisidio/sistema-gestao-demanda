@@ -39,15 +39,15 @@ export interface Point {
 /** Série ordenada e sem buracos na granularidade. */
 export type Series = Point[]
 
-/** Saída bruta de um modelo: ajuste (um valor por ponto da série, ou null) e previsão. */
+/** Saída bruta de um modelo: ajuste (um valor por ponto da série) e previsão. */
 export interface ModelFit {
-  fit: number[] | null
+  fit: number[]
   forecast: number[]
 }
 
 /** Saída de `runModels`: previsão limitada a >= 0 e desvio dos resíduos. */
 export interface ModelResult {
-  fit: number[] | null
+  fit: number[]
   forecast: number[]
   sigma: number
 }
