@@ -109,24 +109,29 @@ export interface PortfolioReportRow {
   tendencia: number[]
 }
 
+/** Uma linha da visão do portfólio (um SKU). */
+export function portfolioRow(records: readonly SaleRecord[], sku: string): PortfolioReportRow {
+  const serie = seriesFor(records, sku, 'W')
+  const best = bestModel(serie, 'W')
+  const top = best.tabela[0]
+  const last52 = serie.slice(-52).map((p) => p.value)
+  const wape = top?.['WAPE (%)']
+  return {
+    sku,
+    perfil: profile(records, sku, 'W').classe,
+    modelo: best.modelo ?? '—',
+    acuracia: top && wape !== undefined && !Number.isNaN(wape) ? 100 - wape : null,
+    vies: top ? top['Viés (Bias)'] : null,
+    volume52: last52.reduce((a, b) => a + b, 0),
+    tendencia: last52,
+  }
+}
+
 /** SPEC-REL-05: visão do portfólio; `onProgress(i, total, sku)` antes de cada SKU. */
 export function portfolioReport(records: readonly SaleRecord[], onProgress?: (i: number, total: number, sku: string) => void): PortfolioReportRow[] {
   const skus = listSkus(records)
   return skus.map((sku, i) => {
     onProgress?.(i, skus.length, sku)
-    const serie = seriesFor(records, sku, 'W')
-    const best = bestModel(serie, 'W')
-    const top = best.tabela[0]
-    const last52 = serie.slice(-52).map((p) => p.value)
-    const wape = top?.['WAPE (%)']
-    return {
-      sku,
-      perfil: profile(records, sku, 'W').classe,
-      modelo: best.modelo ?? '—',
-      acuracia: top && wape !== undefined && !Number.isNaN(wape) ? 100 - wape : null,
-      vies: top ? top['Viés (Bias)'] : null,
-      volume52: last52.reduce((a, b) => a + b, 0),
-      tendencia: last52,
-    }
+    return portfolioRow(records, sku)
   })
 }

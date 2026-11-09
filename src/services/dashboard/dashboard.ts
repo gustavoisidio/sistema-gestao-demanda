@@ -17,6 +17,13 @@ export function filterBase(records: readonly SaleRecord[], skus: readonly string
 const sumBetween = (records: readonly SaleRecord[], exclusiveFrom: string, inclusiveTo: string) =>
   sum(records.filter((r) => r.data > exclusiveFrom && r.data <= inclusiveTo).map((r) => r.quantidade_vendida))
 
+/** Soma de todos os SKUs por data (só datas com registro), em ordem cronológica. */
+export function dailyTotals(base: readonly SaleRecord[]): { date: string; value: number }[] {
+  const m = new Map<string, number>()
+  for (const r of base) m.set(r.data, (m.get(r.data) ?? 0) + r.quantidade_vendida)
+  return [...m.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1)).map(([date, value]) => ({ date, value }))
+}
+
 export interface DashboardKpis {
   ultimo: string
   volume: number

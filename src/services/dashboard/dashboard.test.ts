@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { buildDemoRecords } from '../data/demo'
 import { listSkus } from '../data/summary'
-import { dashboardKpis, filterBase, intensityIndex, monthlyBySku, shareByMonth, volumeBySku } from './dashboard'
+import { dailyTotals, dashboardKpis, filterBase, intensityIndex, monthlyBySku, shareByMonth, volumeBySku } from './dashboard'
 import golden from '../__golden__/dashboard.json'
 
 const records = buildDemoRecords(readFileSync(resolve(process.cwd(), 'src/assets/demo_dataset.csv'), 'utf8'))
@@ -68,5 +68,12 @@ describe('evolução mensal e intensidade (SPEC-DSH-04, SPEC-DSH-05)', () => {
     const small = monthlyBySku([rec('A', '2025-01-10', 0), rec('B', '2025-02-10', 4)], '2025-02-28')
     expect(small.values.A).toEqual([0, null])
     expect(intensityIndex(small).A).toEqual([null, null])
+  })
+})
+
+describe('dailyTotals (SPEC-DSH-02)', () => {
+  it('soma os SKUs por data, em ordem, sem preencher buracos', () => {
+    const t = dailyTotals([rec('A', '2025-01-03', 1), rec('B', '2025-01-01', 2), rec('A', '2025-01-01', 3)])
+    expect(t).toEqual([{ date: '2025-01-01', value: 5 }, { date: '2025-01-03', value: 1 }])
   })
 })

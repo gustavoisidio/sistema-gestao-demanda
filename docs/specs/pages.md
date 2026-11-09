@@ -66,11 +66,9 @@ Cada requisito aponta para o arquivo de mapeamento da tela. Os textos são liter
 
 ### SPEC-PAG-17 — Filtros e KPIs
 **Regra:** filtros "Produtos" (vazio = todos) e "Período"; sem dados filtrados mostra "Nenhum dado para os filtros selecionados."; os 5 KPIs seguem SPEC-DSH-02.
-**Status:** planejado
 
 ### SPEC-PAG-18 — Gráficos do dashboard
 **Regra:** "Volume por produto", "Participação no portfólio", "Evolução temporal" (Empilhado, Linhas, Participação %) e "Intensidade mensal por produto" com a legenda "Meses incompletos no fim do período são omitidos. Dados até {data}."
-**Status:** planejado
 
 ## Relatórios — [07](../mapeamento/07-relatorios.md)
 
