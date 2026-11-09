@@ -33,11 +33,12 @@ describe('rotas por hash (SPEC-SHL-01)', () => {
 
   it('muda de tela com o hash (voltar/avançar do navegador)', async () => {
     render(<App initial={demo} />)
-    expect(await screen.findByTestId('placeholder')).toHaveTextContent('Visão geral')
+    const current = () => within(screen.getByTestId('sidebar-desktop')).getByRole('link', { current: 'page' })
+    expect(current()).toHaveTextContent('Visão geral')
     setHash('#/previsao')
-    await waitFor(() => expect(screen.getByTestId('placeholder')).toHaveTextContent('Previsão de demanda'))
+    await waitFor(() => expect(current()).toHaveTextContent('Previsão de demanda'))
     setHash('#/xyz')
-    await waitFor(() => expect(screen.getByTestId('placeholder')).toHaveTextContent('Visão geral'))
+    await waitFor(() => expect(current()).toHaveTextContent('Visão geral'))
   })
 })
 
@@ -102,12 +103,16 @@ describe('guarda de dados (SPEC-SHL-05)', () => {
     expect(screen.getByRole('button', { name: /Usar dados de demonstração/ })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Importar minha base' })).toHaveAttribute('href', '#/importacao')
     expect(screen.queryByTestId('placeholder')).toBeNull()
+    expect(screen.queryByRole('heading', { level: 1 })).toBeNull()
   })
 
   it('Visão geral e Importação não exigem base', async () => {
     window.location.hash = '#/importacao'
     render(<App initial={null} />)
-    expect(await screen.findByTestId('placeholder')).toBeInTheDocument()
+    await waitFor(() => expect(within(screen.getByTestId('sidebar-desktop')).getByRole('link', { current: 'page' })).toHaveTextContent('Importação de dados'))
+    expect(screen.queryByText('Nenhuma base carregada ainda')).toBeNull()
+    window.location.hash = ''
+    setHash('')
     expect(screen.queryByText('Nenhuma base carregada ainda')).toBeNull()
   })
 
@@ -115,7 +120,8 @@ describe('guarda de dados (SPEC-SHL-05)', () => {
     window.location.hash = '#/analise'
     render(<App initial={null} />)
     await userEvent.click(await screen.findByTestId('guard-demo'))
-    expect(await screen.findByTestId('placeholder')).toHaveTextContent('Análise histórica')
+    await waitFor(() => expect(screen.queryByText('Nenhuma base carregada ainda')).toBeNull())
+    expect(within(screen.getByTestId('sidebar-desktop')).getByText('Base ativa')).toBeInTheDocument()
   })
 })
 

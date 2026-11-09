@@ -6,11 +6,9 @@ Cada requisito aponta para o arquivo de mapeamento da tela. Os textos são liter
 
 ### SPEC-PAG-01 — Visão geral sem base
 **Regra:** exibe o hero, o cartão "Comece em segundos" (botão "Explorar com dados de demonstração" ativa a demo; link "Importar minha base") e o "Fluxo de trabalho" com 6 cartões; não exibe KPIs nem a tabela.
-**Status:** planejado
 
 ### SPEC-PAG-02 — Visão geral com base
 **Regra:** exibe os 4 KPIs (Volume histórico, Produtos (SKUs), Registros, Cobertura = `⌊dias/30⌋ meses`), a seção "Portfólio em um relance" com uma linha por SKU e o "Fluxo de trabalho".
-**Status:** planejado
 
 ## Importação — [01](../mapeamento/01-importacao.md)
 
